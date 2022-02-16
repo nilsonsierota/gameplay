@@ -10,6 +10,7 @@ import { RectButton } from "react-native-gesture-handler";
 
 import { Feather } from "@expo/vector-icons";
 
+import { Guilds } from "../Guilds";
 import { Button } from "../../components/Button";
 import { CategorySelect } from "../../components/CategorySelect";
 import { Header } from "../../components/Header";
@@ -17,7 +18,6 @@ import { GuildIcon } from "../../components/GuildIcon";
 import { SmallInput } from "../../components/SmallInput";
 import { TextArea } from "../../components/TextArea";
 import { Background } from "../../components/Background";
-import { Guilds } from "../Guilds";
 import { ModalView } from "../../components/ModalView";
 import { GuildProps } from "../../components/Guild";
 
@@ -33,9 +33,17 @@ export function AppointmentCreate() {
     setOpenGuildsModal(true);
   }
 
+  function handleCloseGuilds() {
+    setOpenGuildsModal(false);
+  }
+
   function handleGuildSelect(guildSelect: GuildProps) {
     setGuild(guildSelect);
     setOpenGuildsModal(false);
+  }
+
+  function handleCategorySelect(categoryId: string) {
+    setCategory(categoryId);
   }
 
   return (
@@ -58,7 +66,7 @@ export function AppointmentCreate() {
 
           <CategorySelect
             hasCheckBox
-            setCategory={setCategory}
+            setCategory={handleCategorySelect}
             categorySelected={category}
           />
 
@@ -82,7 +90,9 @@ export function AppointmentCreate() {
 
             <View style={styles.field}>
               <View>
-                <Text style={styles.label}>Dia e mes</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Dia e mes
+                </Text>
 
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
@@ -92,7 +102,9 @@ export function AppointmentCreate() {
               </View>
 
               <View>
-                <Text style={styles.label}>Hora e minuto</Text>
+                <Text style={[styles.label, { marginBottom: 12 }]}>
+                  Hora e minuto
+                </Text>
 
                 <View style={styles.column}>
                   <SmallInput maxLength={2} />
@@ -119,11 +131,11 @@ export function AppointmentCreate() {
             </View>
           </View>
         </ScrollView>
-
-        <ModalView visible={openGuildsModal}>
-          <Guilds handleGuildSelected={handleGuildSelect} />
-        </ModalView>
       </Background>
+
+      <ModalView visible={openGuildsModal} closeModal={handleCloseGuilds}>
+        <Guilds handleGuildSelected={handleGuildSelect} />
+      </ModalView>
     </KeyboardAvoidingView>
   );
 }
