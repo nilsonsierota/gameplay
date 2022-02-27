@@ -14,6 +14,8 @@
     "@react-navigation/native": "5.x",
     "@react-navigation/stack": "5.x",
     "axios": "^0.26.0",
+    "babel-plugin-inline-dotenv": "^1.6.0",
+    "dotenv": "^16.0.0",
     "expo": "~42.0.1",
     "expo-app-loading": "^1.1.2",
     "expo-auth-session": "~3.3.1",

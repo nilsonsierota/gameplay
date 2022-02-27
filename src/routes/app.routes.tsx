@@ -9,7 +9,7 @@ import { Home } from "../screens/Home";
 
 const { Navigator, Screen } = createStackNavigator();
 
-export function AuthRoutes() {
+export function AppRoutes() {
   return (
     <Navigator
       headerMode="none"
